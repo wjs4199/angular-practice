@@ -23,11 +23,11 @@ export class HeroesComponent implements OnInit{
     this.getHeroes();
   }
 
-  // 선택한 히어로를 selectedHero 변수에 지정하는 함수
-  // onSelect(hero:Hero): void {
-  //   this.selectedHero = hero;
-  //   this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
-  // }
+  /* 선택한 히어로를 selectedHero 변수에 지정하는 함수
+   onSelect(hero:Hero): void {
+     this.selectedHero = hero;
+     this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+  }*/
 
   // 컴포넌트의 생성자는 생성자로 받은 인지라를 클래스의 프로퍼티로 연결하는 정도로 간단히 하는 것이 좋음
   // 지금도 서비스에서 받은 인자 = getHeroes 를 현재 클래스의 프로퍼티로 연결하는 정도로 간단히 함
@@ -35,5 +35,15 @@ export class HeroesComponent implements OnInit{
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes)
     // 서버에서 받았을 때 subscribe 가 받은 응답을 콜백함수로 전달하고 클래스 프로퍼티에 할당함
+  }
+
+  /** 히어로 추가 */
+  add(name:string): void{
+    name = name.trim();
+    if(!name){return;}
+    this.heroService.addHero({name} as Hero)
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      })
   }
 }

@@ -32,6 +32,9 @@ export class HeroService {
 
   private heroesUrl = 'api/heroes';  // 웹 API 형식의 URL로 사용
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   private log(message:string){
     this.messageService.add(`HeroService:  ${message}`);
@@ -54,6 +57,22 @@ export class HeroService {
       tap((_:any)=>this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
     )
+  }
+
+  /** POST: 서버에 새로운 히어로를 추가 */
+  addHero(hero:Hero): Observable<Hero> {
+    return this.http.post(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap((_:any)=> this.log(`add hero id=${hero.id}, name=${hero.name}`)),
+      catchError(this.handleError<Hero>('addHero'))
+    );
+  }
+
+  /** PUT: 서버에 저장된 히어로 정보 수정하기 (3개의 인자: url, 수정할 데이터, 옵션)*/
+  updateHero(hero:Hero): Observable<any>{ // 본예제에서는 히어로의 id를 기준으로 수정할 히어로를 찾섭
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap((_:any)=> this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
   }
 
   /** HTTP 요청이 실패한 경우를 처리*/
