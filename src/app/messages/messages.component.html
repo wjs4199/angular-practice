@@ -1,0 +1,8 @@
+<!--컴포넌트에 의존성으로 주입된 messageService를 직접 바인딩함-->
+<div *ngIf="messageService.messages.length">
+  <h2>Message</h2>
+  <button type="button" class="clear" (click)="messageService.clear()">Clear messages</button>
+  <div *ngFor="let message of messageService.messages">{{message}}</div>
+  <div> {{messageService.messages.length}}</div>
+<!--  리스트에 존재하는 매세지마다 위의 div 컴포넌트가 반복됨-->
+</div>

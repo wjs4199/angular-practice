@@ -1,0 +1,13 @@
+<!--히어로 상세정보-->
+<!--*ngIf는 hero 값이 존재할 때만 이 엘리먼트를 표시하는 역할을 함-->
+<div *ngIf="hero">
+  <h2>{{hero.name | uppercase}} Details</h2>
+  <div><span> id: </span>{{hero.id}}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="hero.name" placeholder="Hero name">
+  </div>
+  <button type="button" (click)="goBack()">go back</button>
+</div>
+
+<!--<button type="button" (click)="save()">save</button>-->

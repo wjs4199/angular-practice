@@ -1,0 +1,7 @@
+<h2>Top Heroes</h2>
+<div class="heroes-menu">
+<!--  문자열 바인딩으로 id 지정-->
+  <a *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}">
+    {{hero.name}}
+  </a>
+</div>
