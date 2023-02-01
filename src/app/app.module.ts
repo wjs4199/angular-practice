@@ -10,7 +10,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from "@angular/common/http";
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'; // for demo
-import { InMemoryDataService } from './in-memory-data.service'; // for demo
+import { InMemoryDataService } from './in-memory-data.service';
+import { HeroSearchComponent } from './hero-search/hero-search.component'; // for demo
 
 // 애플리케이션 동작에 필요한 메타데이터 지정
 @NgModule({
@@ -19,7 +20,8 @@ import { InMemoryDataService } from './in-memory-data.service'; // for demo
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeroSearchComponent
   ],
   imports: [
     BrowserModule,
